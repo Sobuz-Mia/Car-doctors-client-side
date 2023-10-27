@@ -3,8 +3,31 @@ import { BiLogoFacebookCircle } from 'react-icons/bi';
 import { BiLogoLinkedin } from 'react-icons/bi';
 import { FcGoogle } from 'react-icons/fc';
 import login from "../../assets/images/login/login.svg";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
+
 
 const Register = () => {
+
+    const {createUser} = useContext(AuthContext)
+    const handleCrateUser = event =>{
+        event.preventDefault();
+        const form = event.target;
+        // const name = form.name.value;
+        const email =form.email.value;
+        const password = form.password.value;
+        createUser(email,password)
+        .then(()=>{
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Your account create successfully',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        })
+    }
   return (
     <div className="hero min-h-screen bg-base-200 my-3 rounded-md">
       <div className="hero-content flex-col lg:flex-row">
@@ -13,18 +36,17 @@ const Register = () => {
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <h2 className="text-4xl font-semibold text-center p-5">Register</h2>
-          <form className="card-body">
+          <form onSubmit={handleCrateUser} className="card-body">
             <div className="form-control">
               <label className="block mb-2 text-sm font-medium">
                 Your Name
               </label>
               <input
-                type="name"
+                type="text"
                 name="name"
-                id="email"
+                id="name"
                 className="bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5 "
                 placeholder="Your name"
-                required
               />
             </div>
             <div className="form-control">

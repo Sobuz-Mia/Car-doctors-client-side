@@ -5,7 +5,7 @@ import Service from "./Service";
 const Services = () => {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    axios.get("../../../../public/services.json").then((data) => {
+    axios.get("http://localhost:5000/services").then((data) => {
       setServices(data.data);
     });
   }, []);
