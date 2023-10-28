@@ -25,6 +25,9 @@ const Services = () => {
             services?.map(service=><Service service={service} key={service._id}></Service>)
         }
       </div>
+      <div className="text-center my-8">
+        <button className="btn btn-outline normal-case text-[#FF3811]">More Services</button>
+      </div>
     </div>
   );
 };
