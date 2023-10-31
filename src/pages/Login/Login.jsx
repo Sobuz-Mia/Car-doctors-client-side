@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
-import axios from "axios";
+// import axios from "axios";
 const Login = () => {
   const { loggedIn } = useContext(AuthContext);
   const location = useLocation();
@@ -24,16 +24,16 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-
+      navigate(location?.state ? location.state : "/");
       // get token
-      const user = { email };
-      axios
-        .post("http://localhost:5000/jwt", user, { withCredentials: true })
-        .then((res) => {
-          if (res.data?.success) {
-            navigate(location?.state ? location.state : "/");
-          }
-        });
+      // const user = { email };
+      // axios
+      //   .post("http://localhost:5000/jwt", user, { withCredentials: true })
+      //   .then((res) => {
+      //     if (res.data?.success) {
+      //       navigate(location?.state ? location.state : "/");
+      //     }
+      //   });
     });
   };
   return (
